@@ -1,33 +1,32 @@
 <pre>
-  BIP: 9
+  Niobio Cash Improvement proposal
+  NCIP: 9
   Title: Version bits with timeout and delay
-  Author: Pieter Wuille <pieter.wuille@gmail.com>
-          Peter Todd <pete@petertodd.org>
-          Greg Maxwell <greg@xiph.org>
-          Rusty Russell <rusty@rustcorp.com.au>
-  Comments-Summary: No comments yet.
-  Comments-URI: https://github.com/bitcoin/bips/wiki/Comments:BIP-0009
-  Status: Final
-  Type: Informational
-  Created: 2015-10-04
+  Author: Helder Garcia <helder.garcia@gmail.com>
+  Status: Draft
+  Type: Standards Track
+  Created: 2018-02-06
   License: PD
+  Adapted from Bitcoin BIPS <https://github.com/bitcoin/bips>
+    Authors: Pieter Wuille <pieter.wuille@gmail.com>
+             Peter Todd <pete@petertodd.org>
+             Greg Maxwell <greg@xiph.org>
+             Rusty Russell <rusty@rustcorp.com.au>
 </pre>
 
 ==Abstract==
 
-This document specifies a proposed change to the semantics of the 'version' field in Bitcoin blocks, allowing multiple backward-compatible changes (further called "soft forks") to be deployed in parallel. It relies on interpreting the version field as a bit vector, where each bit can be used to track an independent change. These are tallied each retarget period. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
+This document specifies a proposed mechanism for doing backward-compatible updates (further called "soft forks") to the Niobio Cash code. It also changes the semantics of the 'minor version' field in block header structure, allowing multiple updates to be deployed in parallel.
+It relies on interpreting the minor version field as a bit vector, where each bit can be used to track an independent change. These are tallied each retarget period. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
 
-==Motivation==
-
-BIP 34 introduced a mechanism for doing soft-forking changes without a predefined flag timestamp (or flag block height), instead relying on measuring miner support indicated by a higher version number in block headers. As it relies on comparing version numbers as integers however, it only supports one single change being rolled out at once, requiring coordination between proposals, and does not allow for permanent rejection: as long as one soft fork is not fully rolled out, no future one can be scheduled.
-
-In addition, BIP 34 made the integer comparison (nVersion >= 2) a consensus rule after its 95% threshold was reached, removing 2<sup>31</sup>+2 values from the set of valid version numbers (all negative numbers, as nVersion is interpreted as a signed integer, as well as 0 and 1). This indicates another downside this approach: every upgrade permanently restricts the set of allowed nVersion field values. This approach was later reused in BIP 66 and BIP 65, which further removed nVersions 2 and 3 as valid options. As will be shown further, this is unnecessary.
+# Clarify and exercise the mechanism whereby the bitcoin network collectively consents to upgrade transaction or block binary structures, rules and behaviors.
+# Enforce block and transaction uniqueness, and assist unconnected block validation.
 
 ==Specification==
 
 Each soft fork deployment is specified by the following per-chain parameters (further elaborated below):
 
-# The '''name''' specifies a very brief description of the soft fork, reasonable for use as an identifier. For deployments described in a single BIP, it is recommended to use the name "bipN" where N is the appropriate BIP number.
+# The '''name''' specifies a very brief description of the soft fork, reasonable for use as an identifier. For deployments described in a single NCIP, it is recommended to use the name "NCIP<number>" where <number> is the appropriate NCIP number.
 # The '''bit''' determines which bit in the nVersion field of the block is to be used to signal the soft fork lock-in and activation. It is chosen from the set {0,1,2,...,28}.
 # The '''starttime''' specifies a minimum median time past of a block at which the bit gains its meaning.
 # The '''timeout''' specifies a time at which the deployment is considered failed. If the median time past of a block >= timeout and the soft fork has not yet locked in (including this block's bit state), the deployment is considered failed on all descendants of the block.
@@ -50,25 +49,18 @@ With each block and soft fork, we associate a deployment state. The possible sta
 
 # '''DEFINED''' is the first state that each soft fork starts out as. The genesis block is by definition in this state for each deployment.
 # '''STARTED''' for blocks past the starttime.
-# '''LOCKED_IN''' for one retarget period after the first retarget period with STARTED blocks of which at least threshold have the associated bit set in nVersion.
-# '''ACTIVE''' for all blocks after the LOCKED_IN retarget period.
-# '''FAILED''' for one retarget period past the timeout time, if LOCKED_IN was not reached.
+# '''LOCKED_IN''' for one retarget period after the first retarget period with STARTED blocks. After a LOCKED_IN period, if at least 90% of blocks have the associated bit set in his minor version field then state changes to ACTIVE. If this threshold is not reached and timeout time has not passed, another LOCKED_IN period is started. If a LOCKED_IN period ends and timeout time has been passed, state changes to FAILED.
+# '''ACTIVE''' for all blocks after the LOCKED_IN retarget period, in which 90% of the miners signed with minor version bit set. After reaching ACTIVE state, blocks higher from the first ACTIVE block will be rejected by miners with the updated code.
+# '''FAILED''' for one retarget period past the timeout time, if LOCKED_IN threshold of 90% has not been reached.
 
 ===Bit flags===
 
-The nVersion block header field is to be interpreted as a 32-bit little-endian integer (as present), and bits are selected within this integer as values (1 << N) where N is the bit number.
+The minor_version block header field, currently of type uint8_t (unsigned integer of 8 bits width), is to be interpreted as a map of bits, and bits are selected within this according to its position, starting from bit 0 for the least significant bit at the right, to index 7 for the most significant bit at the left.
 
-Blocks in the STARTED state get an nVersion whose bit position bit is set to 1. The top 3 bits of such blocks must be
-001, so the range of actually possible nVersion values is [0x20000000...0x3FFFFFFF], inclusive.
+Blocks in the STARTED state get an minor version whose bit position bit is set to 1. The top 3 bits of such blocks are reserved for future use, so they must be 000. The range of actually possible minor_version values is [1-31] in decimal or [1-1F] in hexadecimal.
 
-Due to the constraints set by BIP 34, BIP 66 and BIP 65, we only have 0x7FFFFFFB possible nVersion values available.
-This restricts us to at most 30 independent deployments. By restricting the top 3 bits to 001 we get 29 out of those
-for the purposes of this proposal, and support two future upgrades for different mechanisms (top bits 010 and 011).
-When a block nVersion does not have top bits 001, it is treated as if all
-bits are 0 for the purposes of deployments.
-
-Miners should continue setting the bit in LOCKED_IN phase so uptake is visible, though this has no effect on
-consensus rules.
+This restricts us to at most 5 independent deployments. By restricting the top 3 bits to 000 we get 5 out of 8 bits for the purposes of this proposal, and support for future upgrades for different mechanisms.
+When a block minor_version does not have top bits 000, it is treated as if all 8 bits are 0 for the purposes of deployments.
 
 ===New consensus rules===
 
