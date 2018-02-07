@@ -1,11 +1,11 @@
 <pre>
   Niobio Cash Improvement proposal
-  NCIP: 9
+  NCIP: 3
   Title: Signaling mechanism
   Author: Helder Garcia <helder.garcia@gmail.com>
   Status: Draft
   Type: Standards Track
-  Created: 2018-02-06
+  Created: 2018-02-08
   License: PD
   Adapted from Bitcoin BIPS <https://github.com/bitcoin/bips>
     Authors: Pieter Wuille <pieter.wuille@gmail.com>

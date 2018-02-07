@@ -1,4 +1,4 @@
-If you want to submit a NCIP, first propose your idea to the Niobio Cash [https://gitter.im/NiobioCoin| Gitter Room]. After discussion, please open a Pull Request. After copy-editing and acceptance, it will be published here.
+If you want to submit a NCIP, first propose your idea to the Niobio Cash [Gitter Room](https://gitter.im/NiobioCoin). After discussion, please open a Pull Request. After copy-editing and acceptance, it will be published here.
 
 Having a NCIP here does not make it a formally accepted standard until its status becomes Active.
 
