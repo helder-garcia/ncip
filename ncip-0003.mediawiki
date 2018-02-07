@@ -68,7 +68,7 @@ The new consensus rules for each soft fork are enforced for each block that has 
 
 ===State transitions===
 
-<img src="ncip-0003/NCIP0009-Figure01.jpg" align="middle"></img>
+<img src="ncip-0003/NCIP0009-Figure01.jpeg" align="middle"></img>
 
 The genesis block has state DEFINED for each deployment, by definition.
 
