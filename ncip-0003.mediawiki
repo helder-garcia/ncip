@@ -17,7 +17,9 @@
 ==Abstract==
 
 This document specifies a proposed mechanism for doing backward-compatible updates (further called "soft forks") to the Niobio Cash code. It also changes the semantics of the 'minor version' field in block header structure, allowing multiple updates to be deployed in parallel.
-It relies on interpreting the minor version field as a bit vector, where each bit can be used to track an independent change. These are tallied each retarget period. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
+The mechanism relies on interpreting the minor version field as a bit vector, where each bit can be used to track an independent change. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
+
+==Motivation==
 
 # Clarify and exercise the mechanism whereby the bitcoin network collectively consents to upgrade transaction or block binary structures, rules and behaviors.
 # Enforce block and transaction uniqueness, and assist unconnected block validation.

@@ -14,10 +14,15 @@
              Rusty Russell <rusty@rustcorp.com.au>
 </pre>
 
-==Abstract==
+==Resumo==
+
+Este documento descreve a proposta de um mecanismo de atualizações com compatibilidade retroativa (soft forks) no código da Niobio Cash. Também altera a semântica do campo 'minor version', no cabeçalho do bloco, permitindo atualizações concorrentes.
+O mecanismo proposto interpreta o campo 'minor version' como um vetor de bits, ao invés de um inteiro, onde cada bit é usado para indicar uma alteração independente. Assim que um consenso da rede ativar a mudança, ou ela falhar por timeout, há um período de quarentena durante o qual o mesmo bit não pode ser reutilizado. Após essa quarentena, aquela posição do vetor de bit pode novamente ser associada a outro NCIP (Niobio Cash Improvement Proposal).
 
 This document specifies a proposed mechanism for doing backward-compatible updates (further called "soft forks") to the Niobio Cash code. It also changes the semantics of the 'minor version' field in block header structure, allowing multiple updates to be deployed in parallel.
 It relies on interpreting the minor version field as a bit vector, where each bit can be used to track an independent change. These are tallied each retarget period. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
+
+==Justificativa==
 
 # Clarify and exercise the mechanism whereby the bitcoin network collectively consents to upgrade transaction or block binary structures, rules and behaviors.
 # Enforce block and transaction uniqueness, and assist unconnected block validation.
