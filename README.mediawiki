@@ -21,10 +21,41 @@ Those proposing changes should consider that ultimately consent may rest with th
 |- style="background-color: #cfffcf"
 | [[ncip-0003.mediawiki|2]]
 |
-| Signaling mechanism
+| Signaling Mechanism
 | Helder Garcia
 | Standard
 | Draft
 |}
 
 <!-- IMPORTANT!  See the instructions at the top of this page, do NOT JUST add BIPs here! -->
+
+Se você pretende submtere uma proposta na forma de um NCIP, primeiro divulgue sua idea na nossa sala do Gitter em Niobio Cash [https://gitter.im/NiobioCoin GitterRoom]. Depois de debatido, abra um Pull Request neste repositório. Depois de análise e aceitação, ele será publicado aqui.
+
+Ter um NCIP publicado aqui não o torna formalmente aceito até que seu estado se torne ACTIVE.
+
+Aqueles propondo upgrades devem considerar que, em última instância, o consenso está sob controle dos usuários da rede Niobio Cash.
+
+{| class="wikitable sortable" style="width: auto; text-align: center; font-size: smaller; table-layout: fixed;"
+!Número
+!Camada
+!Título
+!Proprietário
+!Tipo
+!Situação
+|- style="background-color: #ffcfcf"
+| [[ncip-0001.mediawiki|1]]
+|
+| NCIP - Propósito e Orientações
+| Helder Garcia
+| Processos
+| Rascunho
+|- style="background-color: #cfffcf"
+| [[ncip-0003.mediawiki|2]]
+|
+| Mecanismo de Sinalização
+| Helder Garcia
+| Padrões
+| Rascunho
+|}
+
+<!-- IMPORTANTE!  Leia as instruções desta página. Não submeta um pull request sem debate com o time de desenvolvimento! -->

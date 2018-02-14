@@ -1,7 +1,7 @@
 <pre>
   Niobio Cash Improvement proposal
   NCIP: 3
-  Title: Signaling mechanism
+  Title: Mecanismo de Sinalização
   Author: Helder Garcia <helder.garcia@gmail.com>
   Status: Draft
   Type: Standards Track
@@ -16,113 +16,93 @@
 
 ==Resumo==
 
-Este documento descreve a proposta de um mecanismo de atualizações com compatibilidade retroativa (soft forks) no código da Niobio Cash. Também altera a semântica do campo 'minor version', no cabeçalho do bloco, permitindo atualizações concorrentes.
+Este documento descreve a proposta de um mecanismo de atualizações com compatibilidade retroativa (upgrades) no código da Niobio Cash. Também altera a semântica do campo 'minor version', no cabeçalho do bloco, permitindo atualizações concorrentes.
 O mecanismo proposto interpreta o campo 'minor version' como um vetor de bits, ao invés de um inteiro, onde cada bit é usado para indicar uma alteração independente. Assim que um consenso da rede ativar a mudança, ou ela falhar por timeout, há um período de quarentena durante o qual o mesmo bit não pode ser reutilizado. Após essa quarentena, aquela posição do vetor de bit pode novamente ser associada a outro NCIP (Niobio Cash Improvement Proposal).
-
-This document specifies a proposed mechanism for doing backward-compatible updates (further called "soft forks") to the Niobio Cash code. It also changes the semantics of the 'minor version' field in block header structure, allowing multiple updates to be deployed in parallel.
-It relies on interpreting the minor version field as a bit vector, where each bit can be used to track an independent change. These are tallied each retarget period. Once the consensus change succeeds or times out, there is a "fallow" pause after which the bit can be reused for later changes.
 
 ==Justificativa==
 
-# Clarify and exercise the mechanism whereby the bitcoin network collectively consents to upgrade transaction or block binary structures, rules and behaviors.
-# Enforce block and transaction uniqueness, and assist unconnected block validation.
+# Define e clarificao mecanismo pelo qual a rede Niobio Cash coletivamente consente em um upgrade de estruturas de dados ou de regras de validação de blocos e/ou transações.
 
-==Specification==
+==Especificação==
 
-Each soft fork deployment is specified by the following per-chain parameters (further elaborated below):
+Cada upgrade é especificado pelos seguintes parâmetros, elaborados no decorrer deste documento:
 
-# The '''name''' specifies a very brief description of the soft fork, reasonable for use as an identifier. For deployments described in a single NCIP, it is recommended to use the name "NCIP<number>" where <number> is the appropriate NCIP number.
-# The '''bit''' determines which bit in the nVersion field of the block is to be used to signal the soft fork lock-in and activation. It is chosen from the set {0,1,2,...,28}.
-# The '''starttime''' specifies a minimum median time past of a block at which the bit gains its meaning.
-# The '''timeout''' specifies a time at which the deployment is considered failed. If the median time past of a block >= timeout and the soft fork has not yet locked in (including this block's bit state), the deployment is considered failed on all descendants of the block.
+# '''name''' define uma breve descrição da mudança, de forma razoável para uso como um identificador. Para uma mudança descrita em um único NCIP, é recomendado o uso do nome no formato "NCIP<número>" onde <número> é o número do respectivo NCIP.
+# '''bit''' determina qual o bit no campo minor_version do cabeçalho do bloco é usado para sinalizar o upgrade. É escolhido do conjunto {0, 1, 2, 3, 4, 5}. O índice incrementa da direita para a esquerda do vetor de bits.
+# '''start_height''' especifica a altura de bloco a partir da qual o bit configurado ganha seu significado.
+# '''timeout_height''' especifica a altura de bloco na qual o deployment falha caso não tenha entrado em LOCKED_IN por ter atingido o percentual de sinalização.
 
-===Selection guidelines===
+===Recomendações de Especificações===
 
-The following guidelines are suggested for selecting these parameters for a soft fork:
+As seguintes melhores práticas são sugeridas ou obrigatórias na configuração dos parâmetros de especificação:
 
-# '''name''' should be selected such that no two softforks, concurrent or otherwise, ever use the same name.
-# '''bit''' should be selected such that no two concurrent softforks use the same bit.
-# '''starttime''' should be set to some date in the future, approximately one month after a software release date including the soft fork.  This allows for some release delays, while preventing triggers as a result of parties running pre-release software.
-# '''timeout''' should be 180 days (15552000 seconds) after starttime.
+# '''name''' deve ser definido de forma a não coincidir com outro NCIP, concorrente ou não.
+# '''bit''' deve ser escolhido de forma a não coincidir com outro NCIP concorrente.
+# '''start_height''' deve ser especificado como um valor absoluto de altura no futuro. Recomeda-se calcular essa altura de modo a corresponder a cerca de 10 dias, pelo menos, após da data estimada de release do upgrade. Isso dá espaço para algum possível atraso, além de evitar ativação por usuários de pre-releases.
+# '''timeout_height''' deve ser um valor absoluto de altura, pelo menos 2000 blocos a frente de start_height, mas não acima de 100000 mais alto. Este limite superior previne um NCIP ficar em estado STARTED para sempre.
 
-A later deployment using the same bit is possible as long as the starttime is after the previous one's
-timeout or activation, but it is discouraged until necessary, and even then recommended to have a pause in between to detect buggy software.
+Um deployment posterior usando o mesmo bit é possível contanto que seu start_height seja mais alto que o timeout_height do NCIP anterior (que usou o mesmo bit), ou de sua ativação. Entretanto, o reuso de um bit não é recomendado até que seja realmente necessário, e mesmo assim após um período de quarentena entre eles, útil para a detecção de possíveis bugs de software.
 
-===States===
+===Estados===
 
-With each block and soft fork, we associate a deployment state. A retarget period of 1000 blocks is used to make transition between them. The possible states are:
+Para cada bloco e upgrade, associamos um estado. Um período de ciclo de 1000 blocos é usado para fazer a transição entre alguns deles. Os possíveis estados são:
 
-# '''DEFINED''' is the first state that each soft fork starts out as. The genesis block is by definition in this state for each deployment.
-# '''STARTED''' for blocks past the starttime.
-# '''LOCKED_IN''' for one retarget period after the first retarget period with STARTED blocks. After a STARTED period, if at least 90% of blocks have the associated bit set in his minor version field then state changes to LOCKED_IN. If this threshold is not reached and timeout time has not passed, another STARTED period is initiated. If a STARTED period ends and timeout time has been passed, state changes to FAILED.
-# '''ACTIVE''' for all blocks after the LOCKED_IN retarget period, in which 90% of the miners signed with minor version bit set. After reaching ACTIVE state, blocks higher from the first ACTIVE block will be rejected by miners with the updated code.
-# '''FAILED''' for one retarget period past the timeout time, if LOCKED_IN threshold of 90% has not been reached.
+# '''DEFINED''' é o primeiro estado que todo NCIP, ou upgrade, inicia.
+# '''STARTED''' para blocos que passaram o start_height. A cada novo bloco minerado, um cálculo é feito sobre seus 1000 antecessores com pelo menos 6 confirmações. O objetivo é calcular a percentagem de blocos, neste grupo de 1000, que tem o bit ativo, correspondente ao NCIP em questão. Se pelo menos 90% (900 blocos de 1000) tiverem esse bit setado no campo minor_version, então o estado muda para LOCKED_IN. Os blocos seguintes permanecem neste estado de STARTED até que o percentual de 90% seja alcançado ou até que a altura de timeout_height seja atingida. Neste último caso, o estado muda para FAILED.
+# '''LOCKED_IN''' para blocos cujo limite de 90% de sinalização tenha sido alcançado. O NCIP neste estado dura 1000 blocos. É o único que tem obrigatoriamente essa duração. O objetivo é dar tempo para o restante dos mineradores de fazer o upgrade, sob o risco de ficarem em uma chain alternativa e minoritária. Neste estado, os blocos sem o upgrade ainda não são invalidados.
+# '''ACTIVE''' para todos os blocos após o período de LOCKED_IN. Depois de atingir o estado de ACTIVE, novos blocos sem o upgrade serão rejeitados pela maioria dos mineradores.
+# '''FAILED''' indica que a alteração proposta pelo NCIP falhou em conseguir consenso na rede antes de atingir o timeout_height. Após um período de pelo menos 1000 blocos o NCIP pode ser tentando novamente.
 
 ===Bit flags===
 
-The minor_version block header field, currently of type uint8_t (unsigned integer of 8 bits width), is to be interpreted as a map of bits, and bits are selected within this according to its position, starting from bit 0 for the least significant bit at the right, to index 7 for the most significant bit at the left.
+O campo minor_version do cabeçalho do bloco, do tipo uint8_t (inteiro de 8 bits sem sinal) até este NCIP número 0008, deve ser interpretado como um mapa de bits, e os bits são selecionados neste mapa de acordo com sua posição, iniciando do bit índice 0 para o bit menos significante (à direita) até o índice 7 para o bit mais significante (à esquerda).
 
-Blocks in the STARTED state get an minor version whose bit position bit is set to 1. The top 3 bits of such blocks are reserved for future use, so they must be 000. The range of actually possible minor_version values is [1-31] in decimal or [1-1F] in hexadecimal.
+Blocos no estado STARTED tem o campo minor_version com o seu bit correspondente setado para 1. Os 3 bits mais significantes (à esquerda) são reservados para uso futuro, tal que devem ser 000, até que sejam definidos novos usos para eles. Atualmente, a faixa possível de valores para o campo minor_version é [1-31] em decimal ou [1-1F] em hexadecimal, ou ainda [00000001-00011111] em binário.
 
-This restricts us to at most 5 independent deployments. By restricting the top 3 bits to 000 we get 5 out of 8 bits for the purposes of this proposal, and support for future upgrades for different mechanisms.
-When a block minor_version does not have top bits 000, it is treated as if all 8 bits are 0 for the purposes of deployments.
+Isso nos restringe a até 5 NCIP independentes. Ao reservar os 3 bits mais significantes a 000 ficamos com 5 dos 8 bits para o propósito desta proposta, e suporte para futuros upgrades para mecanismos diferentes.
+Se um bloco minerado não possuir os 3 bits mais significantes em 000, ele é tratado como se todos os 8 bits fossem 0.
 
-===New consensus rules===
+===Novas regras de consenso===
 
-The new consensus rules for each soft fork are enforced for each block that has ACTIVE state.
+As novas regras de consenso para cada upgrade são mandatórias para cada bloco no estado ACTIVE.
 
-===State transitions===
+===Transições de estado===
 
 <img src="ncip-0003/NCIP0003-Figure01.png" align="middle"></img>
 
-The genesis block has state DEFINED for each deployment, by definition.
+O bloco gênesis está, pode definição, no estado DEFINED para todo upgrade.
 
     State GetStateForBlock(block) {
         if (block.height == 0) {
             return DEFINED;
         }
 
-All blocks within a retarget period have the same state. This means that if
-floor(block1.height / 1000) = floor(block2.height / 1000), they are guaranteed to have the same state for every
-deployment.
+O próximo estado depende do anterior:
 
-        if ((block.height % 1000) != 0) {
-            return GetStateForBlock(block.parent);
-        }
+    switch (GetStateForBlock(GetAncestorAtHeight(block, block.height - 1))) {
 
-Otherwise, the next state depends on the previous state:
-
-        switch (GetStateForBlock(GetAncestorAtHeight(block, block.height - 1000))) {
-
-We remain in the initial state until either we pass the start time or the timeout. GetMedianTimePast in the code below
-refers to the median nTime of a block and its 10 predecessors. The expression GetMedianTimePast(block.parent) is
-referred to as MTP in the diagram above, and is treated as a monotonic clock defined by the chain.
+Permanecemos no estado inicial até que passemos pelo start_height ou pelo timeout_height.
 
         case DEFINED:
-            if (GetMedianTimePast(block.parent) >= timeout) {
+            if (block.height >= timeout_height) {
                 return FAILED;
             }
-            if (GetMedianTimePast(block.parent) >= starttime) {
+            if (block.height >= start_height) {
                 return STARTED;
             }
             return DEFINED;
 
-After a period in the STARTED state, if we're past the timeout, we switch to FAILED. If not, we tally the bits set,
-and transition to LOCKED_IN if a sufficient number of blocks in the past period set the deployment bit in their
-version numbers. The threshold is ≥900 blocks (90% of 1000), or ≥700 for testnet (70% of 1000).
-The transition to FAILED takes precedence, as otherwise an ambiguity can arise.
-There could be two non-overlapping deployments on the same bit, where the first one transitions to LOCKED_IN while the
-other one simultaneously transitions to STARTED, which would mean both would demand setting the bit.
+Durante o estado de STARTED, nós continuamente verificamos os últimos 1000 blocos, com pelo menos 6 cofirmações, e imediatamente movemos para LOCKED_IN se um número suficiente de blocos nessa faixa sinalizam o consenso para a mudança, tendo o bit em questão setado para 1 no campo minor_version. O mínimo requerido é ≥900 blocos (90% de 1000), ou ≥700 para testnet (70% de 1000).
 
-Note that a block's state never depends on its own minor_version; only on that of its ancestors.
+Note que o estado de um bloco nunca depende de seu próprio minor_version, apenas de seus antecessores.
 
         case STARTED:
-            if (GetMedianTimePast(block.parent) >= timeout) {
+            if (block.height >= timeout_height)
                 return FAILED;
-            }
+            GetAncestorAtHeight(block, block.height - 1006);
             int count = 0;
             walk = block;
-            for (i = 0; i < 2016; i++) {
+            for (i = 0; i < 1000; i++) {
                 walk = walk.parent;
                 if (walk.minor_version & 0xE0 == 0x00 && (walk.minor_version >> bit) & 1 == 1) {
                     count++;
@@ -133,27 +113,25 @@ Note that a block's state never depends on its own minor_version; only on that o
             }
             return STARTED;
 
-After a retarget period of LOCKED_IN, we automatically transition to ACTIVE.
+Depois de um período de retarget em LOCKED_IN, movemos automaticamente para o estado ACTIVE.
 
         case LOCKED_IN:
-            return ACTIVE;
+            if(GetStateForBlock(GetAncestorAtHeight(block, block.height - 1006)) == LOCKED_IN) {
+                return ACTIVE;
+            } else {
+                return LOCKED_IN;
+            }
 
-And ACTIVE and FAILED are terminal states, which a deployment stays in once they're reached.
+O estado ACTIVE é terminal, onde um deployment permanece uma vez atingido.
 
         case ACTIVE:
             return ACTIVE;
-
-        case FAILED:
-            return FAILED;
-        }
     }
 
-== Rationale ==
+==Adendo==
 
-The fallow period after the conclusion of a soft fork attempt allows some
-detection of buggy clients, and allows time for warnings and software
-upgrades for successful soft forks.
+O período de quarentena, após a conclusão de uma tentativa de mudança, permite a detecção de clientes com problemas e fornece um tempo para que o restante dos mineradores realizem o upgrade.
 
 ==Copyright==
 
-This document is placed in the public domain.
+Este documento é de Domínio Público.
