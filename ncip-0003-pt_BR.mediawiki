@@ -92,7 +92,7 @@ Permanecemos no estado inicial até que passemos pelo start_height ou pelo timeo
             }
             return DEFINED;
 
-Durante o estado de STARTED, nós continuamente verificamos os últimos 1000 blocos, com pelo menos 6 cofirmações, e imediatamente movemos para LOCKED_IN se um número suficiente de blocos nessa faixa sinalizam o consenso para a mudança, tendo o bit em questão setado para 1 no campo minor_version. O mínimo requerido é ≥900 blocos (90% de 1000), ou ≥700 para testnet (70% de 1000).
+Durante o estado de STARTED, nós continuamente verificamos os últimos 1000 blocos, com pelo menos 6 confirmações, e imediatamente movemos para LOCKED_IN se um número suficiente de blocos nessa faixa sinalizam o consenso para a mudança, tendo o bit em questão setado para 1 no campo minor_version. O mínimo requerido é ≥900 blocos (90% de 1000), ou ≥700 para testnet (70% de 1000).
 
 Note que o estado de um bloco nunca depende de seu próprio minor_version, apenas de seus antecessores.
 
