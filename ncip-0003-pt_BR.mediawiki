@@ -70,7 +70,7 @@ As novas regras de consenso para cada upgrade são mandatórias para cada bloco 
 
 <img src="ncip-0003/NCIP0003-Figure01.png" align="middle"></img>
 
-O bloco gênesis está, pode definição, no estado DEFINED para todo upgrade.
+O bloco gênesis está, por definição, no estado DEFINED para todo upgrade.
 
     State GetStateForBlock(block) {
         if (block.height == 0) {
