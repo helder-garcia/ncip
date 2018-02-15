@@ -47,9 +47,9 @@ Aqueles propondo upgrades devem considerar que, em última instância, o consens
 !Tipo
 !Situação
 |- style="background-color: #ffcfcf"
-| [[ncip-0001.mediawiki|1]]
+| [[ncip-0001-pt_BR.mediawiki|1]]
 |
-| NCIP - Propósito e Orientações
+| NCIP - Propósitos e Orientações
 | Helder Garcia
 | Processos
 | Rascunho
