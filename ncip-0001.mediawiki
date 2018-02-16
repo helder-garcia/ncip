@@ -180,7 +180,7 @@ There are three kinds of NCIP:
 
 The typical paths of the status of NCIPs are as follows:
 
-<img src="NCIP-0002/process.png"></img>
+<img src="ncip-0001/process.png"></img>
 
 Champions of a NCIP may decide on their own to change the status between Draft, Deferred, or Withdrawn.
 The NCIP editor may also change the status to Deferred when no progress is being made on the NCIP.
