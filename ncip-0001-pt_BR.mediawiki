@@ -77,25 +77,23 @@ Em seguida o Editor irá:
 
 ===Especificação===
 
-NCIPs should be written in mediawiki format.
+NCIPs devem ser escrito no formato mediawiki e devem conter as seguintes partes:
 
-Each NCIP should have the following parts:
+* Preãmbulo -- Cabeçalhos contendo metadados sobre o NCIP ([[#NCIP header preamble|ver abaixo]])
 
-* Preamble -- Headers containing metadata about the NCIP ([[#NCIP header preamble|see below]]).
+* Resumo -- Uma curta (~200 palavras) descrição da deficiência técnica sendo endereçada pelo NCIP.
 
-* Abstract -- A short (~200 word) description of the technical issue being addressed.
+* Copyright -- O NCIP deve ser explicitamente licenciado sob termos aceitáveis de direitos de uso ([[#NCIP licensing|ver abaixo]]).
 
-* Copyright -- The NCIP must be explicitly licensed under acceptable copyright terms ([[#NCIP licensing|see below]]).
+* Especificação -- A especificação técnica deve descrever a sintaxe e semântica de qualquer nova funcionalidade. A especificação deve ser detalhada o suficiente para permitir implementações competidoras e interoperáveis para qualquer uma das atuais plataformas da Niobio Cash.
 
-* Specification -- The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Niobio Cash platforms.
+* Motivation -- A motivação é crítica para NCIPs que irão alterar o protocolo da Niobio Cash. Ela deve explicar de forma clara porque o atual protocolo é inadequado para endereçar o problema que o NCIP pretende resolver.
 
-* Motivation -- The motivation is critical for NCIPs that want to change the Niobio Cash protocol. It should clearly explain why the existing protocol is inadequate to address the problem that the NCIP solves.
+* Fundamentação -- A fundamentação descreve a razão da escolha do design usado na especificação. Deve fornecer designs alternativos que foram considerados e os motivos de terem sido preteridos. A fundamentação deve também indicar evidência de consenso dentro da comunidade e discutir importantes objeções ou preocupações demonstradas durante o debate sobre o NCIP proposto.
 
-* Rationale -- The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale should provide evidence of consensus within the community and discuss important objections or concerns raised during discussion.
+* Compatibilidade Retroativa -- Todo NCIP que introduzir incompatibilidade com versões anteriores do protocolo devem incluir uma seção descrevendo essas incompatibilidades e suas severidades. O autor deve propor no NCIP uma forma de lidar com essas incompatibilidades. Caso não haja, a seção deve explicitamente informar "Não há incompatibilidades com versões anteriores ou atual do protocolo".
 
-* Backwards compatibility -- All NCIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The NCIP must explain how the author proposes to deal with these incompatibilities.
-
-* Reference implementation -- The reference implementation must be completed before any NCIP is given status "Final", but it need not be completed before the NCIP is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code. The final implementation must include test code and documentation appropriate for the Niobio Cash protocol.
+* Implementação de Referência -- Deve ser finalizada antes do NCIP alcançar o estado "Final", mas não precisa estar completa antes do NCIP ser aceito. É recomendado terminar a especificação e fundamentação primeiro e conseguir consenso da comunidade antes de começar a escrever código. A implementação final deve ter sido testada.
 
 ====NCIP header preamble====
 
