@@ -35,7 +35,7 @@ Efetuar essa verificação passada e debater com a comunidade antes de escrever 
 
 Uma vez debatida e obtido um consenso de que vale a pena um NCIP, o autor deve apresentar um NCIP no estado Draft (Rascunho) para a Niobio Cash [https://gitter.im/NiobioCoin GitterRoom]. Isso dá a chance de receber feedback sobre possíveis ajustes sobre o estilo, padrão e formatação do NCIP, ou sobre necessidades de explicar melhor determinados pontos no texto.
 
-O passo seguinte a discussão é a submissão do NCIP ao [https://github.com/niobio-cash/ncips NCIPs repositório] como um pull request. Este draft deve ser escrito no estilo descrito a seguir e nomeado "NCIP-autor" até que o editor atribua um número ao NCIP. Os autores NÃO DEVEM atribuir um número ao seu próprio NCIP.
+O passo seguinte a discussão é a submissão do NCIP ao [https://github.com/niobio-cash/ncip repositório NCIP] como um pull request. Este draft deve ser escrito no estilo descrito a seguir e nomeado "NCIP-autor" até que o editor atribua um número ao NCIP. Os autores NÃO DEVEM atribuir um número ao seu próprio NCIP.
 
 É recomenado que um NCIP contenha uma única ideia. Quanto mais objetivo o NCIP, maior a tendência de ser bem sucedido. Na dúvida, divida o seu NCIP em vários bem objetivos e diretos.
 
@@ -63,7 +63,7 @@ Para cada proposta de NCIP, o Editor fará as seguintes avaliações:
 
 Se necessário, o Editor irá retornar o draft para revisão pelo autor, com instruções específicas.
 
-Uma vez pronto, o NCIP deve ser submetido através de um pull request para [https://github.com/Niobio Cash/NCIPs NCIPs repositório git].
+Uma vez pronto, o NCIP deve ser submetido através de um pull request para o [https://github.com/niobio-cash/ncip repositório NCIP].
 
 Em seguida o Editor irá:
 
