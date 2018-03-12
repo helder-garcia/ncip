@@ -28,12 +28,12 @@ A Wallet Node is essentially a full node with a special purpose. The ability to 
 The following parameters are considered when creating a Wallet Node:
 
 # '''Fee Address''' is the destination wallet address for the fee payments. This is the wallet of the Wallet Node's owner.
-# '''Maximum WN Fee''' is expressed in units of the coin (NBR). This is upper limit for the fee charged, per transaction. It is not defined by the Wallet Node's owner.
-# '''Fee''' is the fee, in percentage of the transaction's amount. Not to be confused with the network fee, which still applies. The effective fee charged will be calculated as '''fee * amount / 100''' or '''Maximum WN Fee''', whichever is lower.
+# '''Maximum WN Fee''' is expressed in units of coins (NBR). This is an upper limit for the fee charged, per transaction. It is not defined by the Wallet Node's owner.
+# '''Fee''' is a percentage of the transaction's amount. Not to be confused with the network fee, which still applies. The effective fee charged will be calculated as ''fee * amount / 100'' or 'Maximum WN Fee'', whichever is lower.
 # '''Hostname''' is the public URL of the server on the Internet. The end user must use this value to enter on his wallet settings.
-# '''Port''' is the port of the server on the Internet. The end user must use this value to enter on his wallet settings. Default valeu is 8314.
+# '''Port''' is the port of the server on the Internet. The end user must use this value to enter on his wallet settings. Default value is 8314.
 
-===Commands and syntax===
+===Use===
 
 A Wallet Node is initialized by running the ''niobiod daemon'' which can be found and compiled from the github repository [https://github.com/niobio-cash/niobio-node-daemon Niobio-Node-Daemon]. It is recommended to compile the binaries locally.
 
@@ -47,19 +47,19 @@ The figure below ilustrates the functional environment of a Wallet Node.
 
 <img src="ncip-0004/NCIP0004-Figure01.png" align="middle"></img>
 
-===Technical Requisites===
+===Requirements===
 
-The minimal requirements of a server to run a Wallet Nodes are numerated below. More resources can be needed depending on the number of light wallets connected to the Wallet Node and their use's behaviour.
+The minimal requirements of a server to run a Wallet Node are numerated below. More resources can be needed depending on the number of light wallets connected to the Wallet Node and their use behaviour.
 
 # 2 vCPU
 # 2 GB RAM
 # 100Mbps Ethernet Card
 # 50 GB Hard Disk (SSD recommended)
-# 1 TB de tráfego de saída por mês
+# 1 TB of upload data per month
 # Static public IP address
 # DNS resolution
 
-==Additinal Information==
+==Additional Information==
 
 It is not require to have any amount of NBR coins on the wallet used for the Wallet Node. Any person with enough technical skills can become a Wallet Node provider.
 
