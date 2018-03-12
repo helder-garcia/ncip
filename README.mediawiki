@@ -30,7 +30,7 @@ Those proposing changes should consider that ultimately consent may rest with th
 |- style="background-color: #ffcfcf"
 | [[ncip-0004.mediawiki|4]]
 |
-| NCIP - Wallet Nodes
+| Wallet Nodes
 | Helder Garcia
 | Informational
 | Draft
@@ -70,7 +70,7 @@ Aqueles propondo upgrades devem considerar que, em última instância, o consens
 |- style="background-color: #ffcfcf"
 | [[ncip-0004-pt_BR.mediawiki|4]]
 |
-| NCIP - Nós Remotos de Carteiras - Wallet Nodes
+| Nós Remotos de Carteiras - Wallet Nodes
 | Helder Garcia
 | Informativo
 | Rascunho
