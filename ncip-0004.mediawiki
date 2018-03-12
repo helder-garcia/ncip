@@ -29,7 +29,7 @@ The following parameters are considered when creating a Wallet Node:
 
 # '''Fee Address''' is the destination wallet address for the fee payments. This is the wallet of the Wallet Node's owner.
 # '''Maximum WN Fee''' is expressed in units of coins (NBR). This is an upper limit for the fee charged, per transaction. It is not defined by the Wallet Node's owner.
-# '''Fee''' is a percentage of the transaction's amount. Not to be confused with the network fee, which still applies. The effective fee charged will be calculated as ''fee * amount / 100'' or 'Maximum WN Fee'', whichever is lower.
+# '''Fee''' is a percentage of the transaction's amount. Not to be confused with the network fee, which still applies. The effective fee charged will be calculated as ''fee * amount / 100'' or ''Maximum WN Fee'', whichever is lower.
 # '''Hostname''' is the public URL of the server on the Internet. The end user must use this value to enter on his wallet settings.
 # '''Port''' is the port of the server on the Internet. The end user must use this value to enter on his wallet settings. Default value is 8314.
 
