@@ -39,7 +39,7 @@ O Nó Remoto de Carteira é iniciado utilizando-se o ''daemon niobiod'', que é 
 
 Para subir o serviço utiliza-se o comando abaixo. O exemplo é para a plataforma Linux.
 
-/<caminho>/niobiod --enable-blockchain-indexes --restricted-rpc --rpc-bind-ip 0.0.0.0 --fee-address <carteira-da-taxa> --fee <taxa>
+/<caminho>/niobiod --enable-blockchain-indexes --restricted-rpc --rpc-bind-ip 0.0.0.0 --fee-address <nowiki><carteira-da-taxa></nowiki> --fee <nowiki><taxa></nowiki>
 
 ===Diagrama da Solução===
 
