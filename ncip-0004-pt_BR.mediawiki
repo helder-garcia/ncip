@@ -1,0 +1,67 @@
+<pre>
+  Niobio Cash Improvement proposal
+  NCIP: 4
+  Title: Nós Remotos de Carteiras - Wallet Nodes
+  Author: Helder Garcia <helder.garcia@gmail.com>
+  Status: Draft
+  Type: Informativo
+  Created: 2018-03-12
+  License: PD
+</pre>
+
+==Resumo==
+
+Este documento descreve os Nós Remotos de Carteiras - ''Wallet Nodes'. Os ''Wallet Nodes'' fornecem dados para as ''Light Wallets'' - Carteiras Leves -, tais como carteiras em ''smartphones'' ou mesmo carteiras em ''desktops''.
+Ao provedor de um Wallet Node é dada a possibilidade de cobrar uma taxa por seu uso, provendo uma forma de monetizar no ecossistema da rede '''Niobio Cash'''.
+
+==Justificativa==
+
+# As carteiras em ''smartphones'' e outros dispositivos móveis precisam consultar informações de transações, mas é impraticável que baixem a ''blockchain''. Desta forma, o único modo de operarem á através do serviço de um nó remoto.
+# É preciso que se crie condições de surgimento de fornecedores de nós remotos dentro do ecossistema da moeda, de modo que se torne economicamente viável e que atenda à demanda dos diversos usuários de carteiras leves.
+
+==Especificação==
+
+Um Nó Remoto de Carteira é, essencialmente, um ''full node'' com um recurso extra habilitado. Este recurso permite a cobrança de uma taxa percentual sobre cada transação enviada pelo usuário conectado.
+
+===Dados de Especificação===
+
+Os seguintes parâmetros devem ser definidos para a criação de um serviço de Nó Remoto de Carteiras:
+
+# '''Carteira da Taxa''' é efetivamente um endereço de carteira que receberá o pagamento das taxas. É de posse do provedor do serviço.
+# '''Taxa''' é difinida como percentual da transação enviada pelo usuário do Nó Remoto. Não se confunde com a taxa de rede, que ainda se aplica. A taxa final calculada para o nó de rede será o percentual aplicado ou o Máximo Absoluto, o que for menor.
+# '''Máximo Absoluto''' é um valor em unidades de moeda Niobio Cash que serve como limite superior para a taxa de nó de rede. Não é determinado pelo provedor de serviço de Nó Remoto.
+# '''Hostname''' é o nome do servidor disponível da Internet, ao qual o usuário deverá configurar sua carteira para conectar-se.
+# '''Porta''' é a porta do servidor disponível da Internet, ao qual o usuário deverá configurar sua carteira para conectar-se. O valor padrão para esta porta é 8314.
+
+===Execução===
+
+O Nó Remoto de Carteira é iniciado utilizando-se o ''daemon nidbiod'', que pode ser encontrado no pacote ''CLI'' de cada plataforma de sistema operacional.
+
+Para subir o serviço o comando abaixo deve ser executado. O exemplo é para a plataforma Linux.
+
+/<caminho>/niobiod --enable-blockchain-indexes --restricted-rpc --rpc-bind-ip 0.0.0.0 --fee-address <carteira-da-taxa> --fee <taxa>
+
+===Diagrama da Solução===
+
+A figura abaixo apresenta o diagrama funcional de um Nó Remoto de Carteiras.
+
+<img src="ncip-0004/NCIP0004-Figure01-pt_BR.png" align="middle"></img>
+
+===Requisitos Mínimos===
+
+Os seguintes requisitos mínimos são necessários para prover o serviço de Nó Remoto de Carteiras. Mais recursos podem ser necessários dependendo da quantidade de usuários conectados ao Nó e do padrão de comportamento de suas transações.
+
+# 2 vCPU
+# 2 GB RAM
+# Interface de rede de 100Mbps
+# 1 TB de tráfego de saída por mês
+# IP fixo
+# Resolução de nome DNS
+
+==Adendo==
+
+O Nó Remoto de Carteiras não exige a posse de unidades de moedas Niobio Cash. Qualquer pessoa com os conhecimetos técnicos necessários pode ser um provedor deste serviço.
+
+==Copyright==
+
+Este documento é de Domínio Público.
