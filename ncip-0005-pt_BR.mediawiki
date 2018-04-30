@@ -1,0 +1,22 @@
+<pre>
+  Niobio Cash Improvement proposal
+  NCIP: 5
+  Title: Conexões P2P
+  Author: vitorgamer58 <vitorgamer58@gmail.com>
+  Status: Draft
+  Type: Informativo
+  Created: 2018-03-29
+  License: PD
+</pre>
+
+==Resumo==
+
+Aumentar o parametro P2P_DEFAULT_CONNECTIONS_COUNT de 8 para 10 e o BLOCKS_SYNCHRONIZING_DEFAULT_COUNT de 128 para 300
+
+==Justificativa==
+
+# isso deve aumentar a velocidade com que a blockchain sincroniza, uma vez que cada carteira estará compartilhando a blockchain com mais pessoas a uma taxa maior de envio de blocos
+
+==Copyright==
+
+Este documento é de Domínio Público.
