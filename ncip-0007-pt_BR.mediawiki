@@ -1,7 +1,7 @@
 <pre>
   Niobio Cash Improvement proposal
   NCIP: 7
-  Title: Reduction of Emission Speed
+  Title: Redução do Fator de Velocidade de Emissão
   Author: Helder Garcia <helder.garcia@gmail.com>
   Status: Draft
   Type: Standards
@@ -9,29 +9,29 @@
   License: PD
 </pre>
 
-==Abstract==
+==Resumo==
 
-This NCIP describes a change to the emission speed factor, which will reduce the block reward, after a hard fork.
+Este NCIP descreve uma mudança no fator de velocidade de emissão, o qual reduz o prêmio de bloco, após um hard fork.
 
-==Motivation==
+==Motivação==
 
-# Current curve of emission of the currency is too fast for support the objectives of the project. After its fifth year, the emission would be more than 91%.
+# A curva de emissão atual da moeda está muito acelerada para comportar os objetivos do projeto. Após seu quinto ano, já teriam sido emitidos mais de 91% de unidades Niobio Cash.
 
-The figure below shows emission curve for emission speed factor 18, considering situation from block 82130, mined on April, 30th 2018.
+A figura abaixo mostra a curva de emissão para o fator de velocidade 18, considerando como ponto de origem o supply disponível a partir do bloco 82130, minerado em 30 de Abril de 2018.
 
 <img src="ncip-0007/NCIP0007-Figure01.png" align="middle"></img>
 
-After the change to speed factor 20, the curve will be like the following:
+Após a mudança do fator de velocidade de emissão para 20, a curva se atenua e estica por mais tempo.
 
 <img src="ncip-0007/NCIP0007-Figure02.png" align="middle"></img>
 
-==Specification==
+==Especificação==
 
-Emission speed factor regulates the reward the miner receives for a given block mined. To reduce the reward this factor will be increased from current value of 18 to a new value of 20.
+O fator de velocidade de emissão regula o prêmio que o minerador recebe ao quebrar um bloco. Para reduzir o prêmio base este fator deve ser incrementado do seu valor atual de 18 para um novo valor de 20.
 
-===Implementation===
+===Implementação===
 
-The snippet below shows how the reward is calculated.
+O trecho de código abaixo mostra como o prêmio do bloco é calculado.
 
 <pre>
 if (blockMajorVersion >= BLOCK_MAJOR_VERSION_5) {
