@@ -34,6 +34,13 @@ Those proposing changes should consider that ultimately consent may rest with th
 | Helder Garcia
 | Informational
 | Draft
+|- style="background-color: #cfffcf"
+| [[ncip-0007.mediawiki|3]]
+|
+| Reduction of Emission Speed Factor
+| Helder Garcia
+| Standard
+| Draft
 |}
 
 <!-- IMPORTANT!  See the instructions at the top of this page, do NOT JUST add BIPs here! -->
@@ -73,6 +80,13 @@ Aqueles propondo upgrades devem considerar que, em última instância, o consens
 | Nós Remotos de Carteiras - Wallet Nodes
 | Helder Garcia
 | Informativo
+| Rascunho
+|- style="background-color: #cfffcf"
+| [[ncip-0007-pt_BR.mediawiki|3]]
+|
+| Redução do Fator de Velocidade de Emissão
+| Helder Garcia
+| Padrões
 | Rascunho
 |}
 

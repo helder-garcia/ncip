@@ -1,11 +1,11 @@
 <pre>
   Niobio Cash Improvement proposal
   NCIP: 7
-  Title: Reduction of Emission Speed
+  Title: Reduction of Emission Speed Factor
   Author: Helder Garcia <helder.garcia@gmail.com>
   Status: Draft
   Type: Standards
-  Created: 2018-04-30
+  Created: 2018-05-01
   License: PD
 </pre>
 
