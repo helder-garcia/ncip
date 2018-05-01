@@ -1,3 +1,4 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 <pre>
   Niobio Cash Improvement proposal
   NCIP: 7
@@ -33,11 +34,13 @@ Emission speed factor regulates the reward the miner receives for a given block 
 
 The snippet below shows how the reward is calculated.
 
+<pre class="prettyprint">
 if (blockMajorVersion >= BLOCK_MAJOR_VERSION_5) {
   baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactorV5;
 } else {
   baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactor;
 }
+</pre>
 
 where m_emissionSpeedFactorV5 is 20, used after the hard fork to block version 5. Before that, value 18 from m_emissionSpeedFactor is used.
 
