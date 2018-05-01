@@ -23,7 +23,7 @@ The figure below shows emission curve for emission speed factor 18, considering 
 
 After the change to speed factor 20, the curve will be like the following:
 
-<img src="ncip-0007/NCIP0007-Figure01.png" align="middle"></img>
+<img src="ncip-0007/NCIP0007-Figure02.png" align="middle"></img>
 
 ==Specification==
 
