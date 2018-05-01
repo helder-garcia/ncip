@@ -41,26 +41,28 @@ if (blockMajorVersion >= BLOCK_MAJOR_VERSION_5) {
 }
 </pre>
 
-where m_emissionSpeedFactorV5 is 20, used after the hard fork to block version 5. Before that, value 18 from m_emissionSpeedFactor is used.
+onde m_emissionSpeedFactorV5 tem o valor 20, usado após o hard fork para a versão 5 de bloco. Antes disso, o valor 18 de m_emissionSpeedFactor é usado.
 
-Base reward is derived from remaining supply of coins, subtracting total supply from previously generated amount of coins. To the result of this subtraction, a right shift is applied where the number of positions to shift is denoted by the emission speed factor.
+O prêmio base é derivado do estoque restante de moedas a ser mineradas, o que é a subtração do estoque total pela quantidade de moedas já emitidas. Ao resultado dessa subtração, uma operação de deslocamento de bits à direita (operador >>) é aplicada, onde o fator de velocidade de emissão determina quantos bits devem ser deslocados.
 
-Taking [http://explorer.niobiocash.com/?hash=77b657f41683b01e6fe4f8cc854e5abff963de131eda75186ad638ce294bb58a#blockchain_block block number 82130] the generated coins at that time was 90375038.84349324 NBR. From total supply of 336000000, the remaining coins still to be mined are 245624961.15650676 NBR.
+Tomando o  [http://explorer.niobiocash.com/?hash=77b657f41683b01e6fe4f8cc854e5abff963de131eda75186ad638ce294bb58a#blockchain_block bloco número 82130], a quantidade de moedas geradas àquela altura era 90375038.84349324 NBR. Do total de 336000000 moedas mineráveis, o estoque ainda disponível para mineração era 245624961.15650676 NBR.
 
-This number, without the decimal point, converted to binary is showed below. The 18 bits delimited in brackets are removed by the 18 bits right shift operation.
+Este número, removido o ponto decimal para facilitar a manipulação e convertido para o sistema binário, é mostrado abaixo. Os 18 bits delimitados entre colchetes são removidos pela operação de deslocamento de bits.
 
 1010111010000110111010111000111110001[010011000001110100]
 
-The remaining bits converted to decimal and with the decimal points in place give the reward for next block (82131): 936.98486769 NBR.
+Os bits remanescentes representam o prêmio base. Convertendo este número para decimal e acrescentando o ponto separador das 8 casas decimais, o prêmio base para o próximo bloco, 82131, é 936.98486769 NBR.
 
-Considering the new emission speed factor of 20, the calculation of the next block reward is:
+Considerando o novo fator de velocidade de emissão de 20, o cálculo do prêmio para o próximo bloco é:
 
 10101110100001101110101110001111100[01010011000001110100] = 234.24621692 NBR.
 
-===Activation===
+===Ativação===
 
-To create consensus among the network about the new block reward calculation, a voting window of 240 block will moves continually until 90 percent of the blocks are signaling with the upgrade. After the threshold of 90 percent is reached, a LOCKED_IN phase of 50 blocks will run before the blocks upgrade to version 5. After the hard fork blocks version 4 will be rejected.
+Para obter o consenso da maioria da rede sobre as novas regras de cálculo de prêmio base de bloco, uma votação por bloco terá efeito. A votação consistirá de uma exigência de 90% de blocos sinalizados posivitivamente (minor_version 1, bloco versão 4.1) dentro de uma janela móvel de 240 blocos.
 
-==Copyright==
+Após o atingimento dessa exigência, a fase de LOCKED_IN se estabelece com duração de 50 blocos, após a qual os blocos gerados passarão a ter a versão 5. O NCIP entra em modo ACTIVE e blocos com versão 4 passarão a ser rejeitados.
 
-This document is placed in the public domain.
+==Direitos==
+
+Este documento está em domínio público.
