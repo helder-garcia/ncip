@@ -59,10 +59,6 @@ Considering the new emission speed factor of 20, the calculation of the next blo
 
 To create consensus among the network about the new block reward calculation, a voting window of 240 block will moves continually until 90 percent of the blocks are signaling with the upgrade. After the threshold of 90 percent is reached, a LOCKED_IN phase of 50 blocks will run before the blocks upgrade to version 5. After the hard fork blocks version 4 will be rejected.
 
-==Additional Information==
-
-It is not require to have any amount of NBR coins on the wallet used for the Wallet Node. Any person with enough technical skills can become a Wallet Node provider.
-
 ==Copyright==
 
 This document is placed in the public domain.
