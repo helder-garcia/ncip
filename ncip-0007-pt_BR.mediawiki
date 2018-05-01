@@ -1,0 +1,68 @@
+<pre>
+  Niobio Cash Improvement proposal
+  NCIP: 7
+  Title: Redução do Fator de Velocidade de Emissão
+  Author: Helder Garcia <helder.garcia@gmail.com>
+  Status: Draft
+  Type: Standards
+  Created: 2018-05-01
+  License: PD
+</pre>
+
+==Resumo==
+
+Este NCIP descreve uma mudança no fator de velocidade de emissão, o qual reduz o prêmio de bloco, após um hard fork.
+
+==Motivação==
+
+# A curva de emissão atual da moeda está muito acelerada para comportar os objetivos do projeto. Após seu quinto ano, já teriam sido emitidos mais de 91% de unidades Niobio Cash.
+
+A figura abaixo mostra a curva de emissão para o fator de velocidade 18, considerando como ponto de origem o supply disponível a partir do bloco 82130, minerado em 30 de Abril de 2018.
+
+<img src="ncip-0007/NCIP0007-Figure01.png" align="middle"></img>
+
+Após a mudança do fator de velocidade de emissão para 20, a curva se atenua e estica por mais tempo.
+
+<img src="ncip-0007/NCIP0007-Figure02.png" align="middle"></img>
+
+==Especificação==
+
+O fator de velocidade de emissão regula o prêmio que o minerador recebe ao quebrar um bloco. Para reduzir o prêmio base este fator deve ser incrementado do seu valor atual de 18 para um novo valor de 20.
+
+===Implementação===
+
+O trecho de código abaixo mostra como o prêmio do bloco é calculado.
+
+<pre>
+if (blockMajorVersion >= BLOCK_MAJOR_VERSION_5) {
+  baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactorV5;
+} else {
+  baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactor;
+}
+</pre>
+
+onde m_emissionSpeedFactorV5 tem o valor 20, usado após o hard fork para a versão 5 de bloco. Antes disso, o valor 18 de m_emissionSpeedFactor é usado.
+
+O prêmio base é derivado do estoque restante de moedas a ser mineradas, o que é a subtração do estoque total pela quantidade de moedas já emitidas. Ao resultado dessa subtração, uma operação de deslocamento de bits à direita (operador >>) é aplicada, onde o fator de velocidade de emissão determina quantos bits devem ser deslocados.
+
+Tomando o  [http://explorer.niobiocash.com/?hash=77b657f41683b01e6fe4f8cc854e5abff963de131eda75186ad638ce294bb58a#blockchain_block bloco número 82130], a quantidade de moedas geradas àquela altura era 90375038.84349324 NBR. Do total de 336000000 moedas mineráveis, o estoque ainda disponível para mineração era 245624961.15650676 NBR.
+
+Este número, removido o ponto decimal para facilitar a manipulação e convertido para o sistema binário, é mostrado abaixo. Os 18 bits delimitados entre colchetes são removidos pela operação de deslocamento de bits.
+
+1010111010000110111010111000111110001[010011000001110100]
+
+Os bits remanescentes representam o prêmio base. Convertendo este número para decimal e acrescentando o ponto separador das 8 casas decimais, o prêmio base para o próximo bloco, 82131, é 936.98486769 NBR.
+
+Considerando o novo fator de velocidade de emissão de 20, o cálculo do prêmio para o próximo bloco é:
+
+10101110100001101110101110001111100[01010011000001110100] = 234.24621692 NBR.
+
+===Ativação===
+
+Para obter o consenso da maioria da rede sobre as novas regras de cálculo de prêmio base de bloco, uma votação por bloco terá efeito. A votação consistirá de uma exigência de 90% de blocos sinalizados posivitivamente (minor_version 1, bloco versão 4.1) dentro de uma janela móvel de 240 blocos.
+
+Após o atingimento dessa exigência, a fase de LOCKED_IN se estabelece com duração de 50 blocos, após a qual os blocos gerados passarão a ter a versão 5. O NCIP entra em modo ACTIVE e blocos com versão 4 passarão a ser rejeitados.
+
+==Direitos==
+
+Este documento está em domínio público.
