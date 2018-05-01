@@ -15,7 +15,7 @@ This NCIP describes a change to the emission speed factor, which will reduce the
 
 ==Motivation==
 
-# Current curve of emission of the currency is too fast for support its objectives. After its fifth year, the emission would be more than 91%.
+# Current curve of emission of the currency is too fast for support the objectives of the project. After its fifth year, the emission would be more than 91%.
 
 The figure below shows emission curve for emission speed factor 18, considering situation from block 82130, mined on April, 30th 2018.
 
