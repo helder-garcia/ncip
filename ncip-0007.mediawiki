@@ -1,0 +1,68 @@
+<pre>
+  Niobio Cash Improvement proposal
+  NCIP: 7
+  Title: Reduction of Emission Speed
+  Author: Helder Garcia <helder.garcia@gmail.com>
+  Status: Draft
+  Type: Standards
+  Created: 2018-04-30
+  License: PD
+</pre>
+
+==Abstract==
+
+This NCIP describes a change to the emission speed factor, which will reduce the block reward, after a hard fork.
+
+==Motivation==
+
+# Current curve of emission of the currency is too fast for support its objectives. After its fifth year, the emission would be more than 91%.
+
+The figure below shows emission curve for emission speed factor 18, considering situation from block 82130, mined on April, 30th 2018.
+
+<img src="ncip-0007/NCIP0007-Figure01.png" align="middle"></img>
+
+After the change to speed factor 20, the curve will be like the following:
+
+<img src="ncip-0007/NCIP0007-Figure01.png" align="middle"></img>
+
+==Specification==
+
+Emission speed factor regulates the reward the miner receives for a given block mined. To reduce the reward this factor will be increased from current value of 18 to a new value of 20.
+
+===Implementation===
+
+The snippet below shows how the reward is calculated.
+
+if (blockMajorVersion >= BLOCK_MAJOR_VERSION_5) {
+  baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactorV5;
+} else {
+  baseReward = (m_moneySupply - alreadyGeneratedCoins) >> m_emissionSpeedFactor;
+}
+
+where m_emissionSpeedFactorV5 is 20, used after the hard fork to block version 5. Before that, value 18 from m_emissionSpeedFactor is used.
+
+Base reward is derived from remaining supply of coins, subtracting total supply from previously generated amount of coins. To the result of this subtraction, a right shift is applied where the number of positions to shift is denoted by the emission speed factor.
+
+Taking [http://explorer.niobiocash.com/?hash=77b657f41683b01e6fe4f8cc854e5abff963de131eda75186ad638ce294bb58a#blockchain_block block number 82130] the generated coins at that time was 90375038.84349324 NBR. From total supply of 336000000, the remaining coins still to be mined are 245624961.15650676 NBR.
+
+This number, without the decimal point, converted to binary is showed below. The 18 bits delimited in brackets are removed by the 18 bits right shift operation.
+
+1010111010000110111010111000111110001[010011000001110100]
+
+The remaining bits converted to decimal and with the decimal points in place give the reward for next block (82131): 936.98486769 NBR.
+
+Considering the new emission speed factor of 20, the calculation of the next block reward is:
+
+10101110100001101110101110001111100[01010011000001110100] = 234.24621692 NBR.
+
+===Activation===
+
+To create consensus among the network about the new block reward calculation, a voting window of 240 block will moves continually until 90 percent of the blocks are signaling with the upgrade. After the threshold of 90 percent is reached, a LOCKED_IN phase of 50 blocks will run before the blocks upgrade to version 5. After the hard fork blocks version 4 will be rejected.
+
+==Additional Information==
+
+It is not require to have any amount of NBR coins on the wallet used for the Wallet Node. Any person with enough technical skills can become a Wallet Node provider.
+
+==Copyright==
+
+This document is placed in the public domain.
