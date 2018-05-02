@@ -28,7 +28,7 @@ Um Nó Remoto de Carteira é, essencialmente, um ''full node'' com um recurso ex
 Os seguintes parâmetros devem ser definidos para a criação de um serviço de Nó Remoto de Carteiras:
 
 # '''Carteira da Taxa''' é efetivamente um endereço de carteira que receberá o pagamento das taxas. É de posse do provedor do serviço.
-# '''Taxa''' é difinida como percentual da transação enviada pelo usuário do Nó Remoto. Não se confunde com a taxa de rede, que ainda se aplica. A taxa final calculada para o Nó de Remoto será o percentual aplicado sobre o total da transação ou o Máximo Absoluto, o que for menor.
+# '''Taxa''' é definida como percentual da transação enviada pelo usuário do Nó Remoto. Não se confunde com a taxa de rede, que ainda se aplica. A taxa final calculada para o Nó de Remoto será o percentual aplicado sobre o total da transação ou o Máximo Absoluto, o que for menor.
 # '''Máximo Absoluto''' é um valor em unidades de moeda Niobio Cash que serve como limite superior para a taxa de Nó Remoto. Não é determinado pelo provedor do serviço.
 # '''Hostname''' é o nome do servidor disponível na Internet, ao qual o usuário deverá configurar sua carteira para conectar-se.
 # '''Porta''' é a porta do servidor disponível na Internet, ao qual o usuário deverá configurar sua carteira para conectar-se. O valor padrão para esta porta é 8314.

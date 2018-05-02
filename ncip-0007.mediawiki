@@ -59,7 +59,7 @@ Considering the new emission speed factor of 20, the calculation of the next blo
 
 ===Activation===
 
-To create consensus among the network about the new block reward calculation, a voting window of 240 block will moves continually until 90 percent of the blocks are signaling with the upgrade. After the threshold of 90 percent is reached, a LOCKED_IN phase of 50 blocks will run before the blocks upgrade to version 5. After the hard fork blocks version 4 will be rejected.
+To create consensus among the network about the new block reward calculation, a voting window of 240 block will moves continually until 85 percent of the blocks are signaling with the upgrade. After the threshold of 85 percent is reached, a LOCKED_IN phase of 50 blocks will run before the blocks upgrade to version 5. Then blocks version 4 will be rejected.
 
 ==Copyright==
 
