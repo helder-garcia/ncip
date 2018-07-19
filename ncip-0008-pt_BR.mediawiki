@@ -94,7 +94,7 @@ Variables which are prefixed with a req- are considered required.  If a client d
 ===Sintaxe Simples===
 
 This section is non-normative and does not cover all possible syntax.
-Please see the [[#Gramática_abnf|ABNF Grammar ]] above for the normative syntax.
+Please see the [[#gramática-abnf|ABNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
