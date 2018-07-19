@@ -2,7 +2,7 @@
   Niobio Cash Improvement proposal
   NCIP: 8
   Title: URI Scheme
-  Author: Helder Garcia <helder.garcia@gmail.com>
+  Author: Helder Garcia <helder.garcia@gmail.com>, Jayder Franca
   Status: Draft
   Type: Standards
   Created: 2018-07-19
@@ -33,7 +33,7 @@ Niobio Cash URIs follow the general format for URIs as set forth in RFC 3986. Th
 
 Elements of the query component may contain characters outside the valid range. These must first be encoded according to UTF-8, and then each octet of the corresponding UTF-8 sequence must be percent-encoded as described in RFC 3986.
 
-=== ABNF grammar ===
+=== ABNF Grammar ===
 
 (See also [[#Simpler Syntax|a simpler representation of syntax]])
 
@@ -42,6 +42,7 @@ Elements of the query component may contain characters outside the valid range. 
  niobiocashparams  = niobiocashparam [ "&" niobiocashparams ]
  niobiocashparam   = [ amountparam / labelparam / descparam / reqparam ]
  amountparam    = "amount=" *digit
+ payidparam     = "payid=" *qchar
  labelparam     = "label=" *qchar
  anonparam    = "anon=" *digit
  descparam   = "message=" *qchar
@@ -56,6 +57,7 @@ The scheme component ("niobiocash:") is case-insensitive, and implementations mu
 *address: Niobio Cash address
 *amount: Amount of base Niobio Cash units ([[#Transfer Amount|see below]])
 *label: Label for that address (e.g. name of receiver)
+*payid: Payment ID in hexadecimal format
 *anon: Anonymity level
 *desc: Message that describes the transaction to the user ([[#Examples|see examples below]])
 
@@ -71,7 +73,7 @@ For example, so long as the majority of users work in NBR units, values should a
 
 == Rationale ==
 
-===Payment identifiers, not person identifiers===
+===Payment Identifiers===
 
 Current best practices are that a unique address should be used for every transaction.
 Therefore, a URI scheme should not represent an exchange of personal information, but a one-time payment.
@@ -92,7 +94,7 @@ Variables which are prefixed with a req- are considered required.  If a client d
 ===Simpler Syntax===
 
 This section is non-normative and does not cover all possible syntax.
-Please see the BNF grammar above for the normative syntax.
+Please see the [[#BNF Grammar |BNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
