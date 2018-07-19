@@ -1,0 +1,121 @@
+<pre>
+  Niobio Cash Improvement proposal
+  NCIP: 8
+  Title: URI Scheme
+  Author: Helder Garcia <helder.garcia@gmail.com>, Jayder Franca
+  Status: Draft
+  Type: Standards
+  Created: 2018-07-19
+  License: PD
+</pre>
+
+==Abstract==
+
+This NCIP proposes a URI scheme for making Niobio Cash payments. It is based in [https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki BIP0021].
+
+==Motivation==
+
+The purpose of this URI scheme is to enable users to easily make payments by simply clicking links on webpages or scanning QR Codes.
+
+==Specification==
+
+=== General Rules ===
+
+Niobio Cash clients MUST NOT act on URIs without getting the user's authorization.
+They SHOULD require the user to manually approve each payment individually, though in some cases they MAY allow the user to automatically make this decision.
+
+=== Operating system integration ===
+Graphical Niobio Cash clients SHOULD register themselves as the handler for the "niobiocash:" URI scheme by default, if no other handler is already registered. If there is already a registered handler, they MAY prompt the user to change it once when they first run the client.
+
+=== General Format ===
+
+Niobio Cash URIs follow the general format for URIs as set forth in RFC 3986. The path component consists of a Niobio Cash address, and the query component provides additional payment options.
+
+Elements of the query component may contain characters outside the valid range. These must first be encoded according to UTF-8, and then each octet of the corresponding UTF-8 sequence must be percent-encoded as described in RFC 3986.
+
+=== ABNF Grammar ===
+
+(See also [[#Simpler_Syntax|a simpler representation of syntax]])
+
+ niobiocashurn     = "niobiocash:" niobiocashaddress [ "?" niobiocashparams ]
+ niobiocashaddress = *base58
+ niobiocashparams  = niobiocashparam [ "&" niobiocashparams ]
+ niobiocashparam   = [ amountparam / labelparam / descparam / reqparam ]
+ amountparam    = "amount=" *digit
+ payidparam     = "payid=" *qchar
+ labelparam     = "label=" *qchar
+ anonparam    = "anon=" *digit
+ descparam   = "message=" *qchar
+ reqparam       = "req-" qchar *qchar [ "=" *qchar ]
+
+Here, "qchar" corresponds to valid characters of an RFC 3986 URI query component, excluding the "=" and "&" characters, which this NCIP takes as separators.
+
+The scheme component ("niobiocash:") is case-insensitive, and implementations must accept any combination of uppercase and lowercase letters. The rest of the URI is case-sensitive, including the query parameter keys.
+
+=== Query Keys ===
+
+*address: Niobio Cash address
+*amount: Amount of base Niobio Cash units
+*label: Label for that address (e.g. name of receiver)
+*payid: Payment ID in hexadecimal format
+*anon: Anonymity level
+*desc: Message that describes the transaction to the user ([[#Examples|see examples below]])
+
+====Transfer Amount====
+
+If an amount is provided, it MUST be specified in integer NBR.
+All amounts MUST contain no commas or periods. Clients should consider the 8 decimal places.
+I.e. 100000000 is treated as 1 NBR, 10000000 is 0.1 NBR, and 1.00000000 is an invalid amount.
+
+Niobio Cash clients MAY display the amount in any format that is not intended to deceive the user.
+They SHOULD choose a format that is foremost least confusing, and only after that most reasonable given the amount requested.
+For example, so long as the majority of users work in NBR units, values should always be displayed in NBR by default, even if mNBR would otherwise be a more logical interpretation of the amount.
+
+== Rationale ==
+
+===Payment Identifiers===
+
+Current best practices are that a unique address should be used for every transaction.
+Therefore, a URI scheme should not represent an exchange of personal information, but a one-time payment.
+
+===Accessibility (URI scheme name)===
+
+Should someone from the outside happen to see such a URI, the URI scheme name already gives a description.
+A quick search should then do the rest to help them find the resources needed to make their payment.
+Other proposed names sound much more cryptic; the chance that someone googles that out of curiosity are much slimmer.
+Also, very likely, what he will find are mostly technical specifications - not the best introduction to Niobio Cash.
+
+== Forward Compatibility ==
+
+Variables which are prefixed with a req- are considered required.  If a client does not implement any variables which are prefixed with req-, it MUST consider the entire URI invalid.  Any other variables which are not implemented, but which are not prefixed with a req-, can be safely ignored.
+
+== Appendix ==
+
+===Simpler Syntax===
+
+This section is non-normative and does not cover all possible syntax.
+Please see the [[#ABNF_Grammar |ABNF Grammar ]] above for the normative syntax.
+
+[foo] means optional, &lt;bar&gt; are placeholders
+
+ <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payid=<payid][&anon=<anon>][&desc=<description>]</nowiki>
+
+===Examples===
+
+Just the address:
+ niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi
+
+Address with name:
+ niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?label=Jayder-Franca
+
+Request 10.5 NBR to "Jayder-Franca":
+ niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?amount=1050000000&label=Jayder-Franca
+
+Request 200 NBR with message:
+ niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?amount=20000000000&label=Jayder-Franca&desc=Donation%20for%20project%20xyz
+
+Characters must be URI encoded properly.
+
+==Copyright==
+
+This document is placed in the public domain.
