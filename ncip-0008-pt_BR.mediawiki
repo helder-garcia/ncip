@@ -35,7 +35,7 @@ Elementos do componente "query" podem conter caracteres fora do intervalo válid
 
 === Gramática ABNF ===
 
-(Veja também [[#Simpler_Syntax|uma representação simples de sintaxe]])
+(Veja também [[#Sintaxe_Simples|uma representação simples de sintaxe]])
 
  niobiocashurn     = "niobiocash:" niobiocashaddress [ "?" niobiocashparams ]
  niobiocashaddress = *base58
@@ -59,7 +59,7 @@ A padronização do esquema ("niobiocash:") não faz distinção entre maiúscul
 *label: Identificador do endereço (por exemplo, o nome do destinatário)
 *payid: ID de pagamento no formato hexadecimal
 *anon: Nível de Anonimatio
-*desc: Mensagem de descrição do pagamento ([[#Examples|veja os exemplos abaixo]])
+*desc: Mensagem de descrição do pagamento ([[#Exemplos|veja os exemplos abaixo]])
 
 ====Valor da Transferência====
 
@@ -94,7 +94,7 @@ Variables which are prefixed with a req- are considered required.  If a client d
 ===Sintaxe Simples===
 
 This section is non-normative and does not cover all possible syntax.
-Please see the [[#ABNF_Grammar |ABNF Grammar ]] above for the normative syntax.
+Please see the [[#Gramática_ABNF |ABNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
