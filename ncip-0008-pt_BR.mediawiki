@@ -68,7 +68,6 @@ Todos os valores NÂO DEVEM conter vírgulas ou pontos. Os clientes devem consid
 Ou seja, 100000000 é considerado como 1 NBR, 10000000 é 0.1 NBR e 1.00000000 é um valor inválido.
 
 Clientes Niobio Cash PODEM exibir os valor em qualquer formato que não tenha como objetivo enganar o usuário.
-They SHOULD choose a format that is foremost least confusing, and only after that most reasonable given the amount requested.
 Eles DEVEM escolher um formato que seja o menos confuso possível, e somente após isso o mais razoável, dado o valor solicidado
 Por exemplo, desde que a maioria dos usuários trabalhe com unidades de NBR, os valores sempre devem ser exibidos em NBR como padrão, mesmo que mNBR seja uma interpretação mais lógica do valor
 
@@ -81,14 +80,14 @@ Portanto, a padronização URI não deve representar uma troca de informações 
 
 ===Acessibilidade (nome URI padrão)===
 
-Should someone from the outside happen to see such a URI, the URI scheme name already gives a description.
-A quick search should then do the rest to help them find the resources needed to make their payment.
-Other proposed names sound much more cryptic; the chance that someone googles that out of curiosity are much slimmer.
-Also, very likely, what he will find are mostly technical specifications - not the best introduction to Niobio Cash.
+Caso alguém de fora chegue a ver tal URI, o nome da URI padrão já fornece uma boa descrição.
+Uma busca rápida deve então fazer o resto para ajudá-los a encontrar os recursos necessários para efetuar o pagamento.
+Outros nomes propostos soam muito mais enigmáticos; a chance de que alguém pesquise por curiosidade é muito pequena.
+Além disso, muito provavelmente, o que ele encontrará são principalmente especificações técnicas - não a melhor introdução a Niobio Cash.
 
-== Forward Compatibility ==
+== Compatibilidade de encaminhamento ==
 
-Variables which are prefixed with a req- are considered required.  If a client does not implement any variables which are prefixed with req-, it MUST consider the entire URI invalid.  Any other variables which are not implemented, but which are not prefixed with a req-, can be safely ignored.
+Variáveis com o prefixo req- são consideradas obrigatórias. Se o cliente não implementar nenhuma variável como req-, DEVE-SE considerar toda a URI inválida. Qualquer outras variáveis não implementadas que não sejam prefixadas com req- podem ser ignoradas seguramente.
 
 == Apêndice ==
 
