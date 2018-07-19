@@ -47,7 +47,7 @@ Those proposing changes should consider that ultimately consent may rest with th
 | URI Scheme
 | Helder Garcia
 | Standard
-| Active
+| Draft
 |}
 
 <!-- IMPORTANT!  See the instructions at the top of this page, do NOT JUST add BIPs here! -->
@@ -101,7 +101,7 @@ Aqueles propondo upgrades devem considerar que, em última instância, o consens
 | Esquema de URN
 | Helder Garcia
 | Padrões
-| Ativo
+| Rascunho
 |}
 
 <!-- IMPORTANTE!  Leia as instruções desta página. Não submeta um pull request sem debate com o time de desenvolvimento! -->
