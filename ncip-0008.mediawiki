@@ -55,7 +55,7 @@ The scheme component ("niobiocash:") is case-insensitive, and implementations mu
 === Query Keys ===
 
 *address: Niobio Cash address
-*amount: Amount of base Niobio Cash units ([[#Transfer Amount]])
+*amount: Amount of base Niobio Cash units
 *label: Label for that address (e.g. name of receiver)
 *payid: Payment ID in hexadecimal format
 *anon: Anonymity level
@@ -94,7 +94,7 @@ Variables which are prefixed with a req- are considered required.  If a client d
 ===Simpler Syntax===
 
 This section is non-normative and does not cover all possible syntax.
-Please see the [[#BNF Grammar |BNF Grammar ]] above for the normative syntax.
+Please see the [[#ABNF Grammar |BNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
