@@ -35,7 +35,7 @@ Elements of the query component may contain characters outside the valid range. 
 
 === ABNF Grammar ===
 
-(See also [[#Simpler Syntax|a simpler representation of syntax]])
+(See also [[#Simpler_Syntax|a simpler representation of syntax]])
 
  niobiocashurn     = "niobiocash:" niobiocashaddress [ "?" niobiocashparams ]
  niobiocashaddress = *base58
@@ -94,7 +94,7 @@ Variables which are prefixed with a req- are considered required.  If a client d
 ===Simpler Syntax===
 
 This section is non-normative and does not cover all possible syntax.
-Please see the [[#ABNF Grammar |BNF Grammar ]] above for the normative syntax.
+Please see the [[#ABNF_Grammar |ABNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
