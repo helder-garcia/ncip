@@ -95,7 +95,7 @@ Variáveis com o prefixo req- são consideradas obrigatórias. Se o cliente não
 Essa seção não é normativa e não cobre toda a sintaxe possível.
 Por favor veja [[#gramática-abnf|Gramática ABNF]] acima para a sintaxe normativa.
 
-[foo] means optional, &lt;bar&gt; are placeholders
+[foo] opcional, &lt;bar&gt; são espaços reservados
 
  <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payid=<payid][&anon=<anon>][&desc=<description>]</nowiki>
 
