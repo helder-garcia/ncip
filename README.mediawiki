@@ -40,7 +40,14 @@ Those proposing changes should consider that ultimately consent may rest with th
 | Reduction of Emission Speed Factor
 | Helder Garcia
 | Standard
-| Draft
+| Active
+|- style="background-color: #ffcfcf"
+| [[ncip-0008.mediawiki|8]]
+|
+| URI Scheme
+| Helder Garcia
+| Standard
+| Active
 |}
 
 <!-- IMPORTANT!  See the instructions at the top of this page, do NOT JUST add BIPs here! -->
@@ -87,7 +94,14 @@ Aqueles propondo upgrades devem considerar que, em última instância, o consens
 | Redução do Fator de Velocidade de Emissão
 | Helder Garcia
 | Padrões
-| Rascunho
+| Ativo
+|- style="background-color: #ffcfcf"
+| [[ncip-0008-pt_BR.mediawiki|8]]
+|
+| Esquema de URN
+| Helder Garcia
+| Padrões
+| Ativo
 |}
 
 <!-- IMPORTANTE!  Leia as instruções desta página. Não submeta um pull request sem debate com o time de desenvolvimento! -->
