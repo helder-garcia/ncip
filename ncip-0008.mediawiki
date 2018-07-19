@@ -55,7 +55,7 @@ The scheme component ("niobiocash:") is case-insensitive, and implementations mu
 === Query Keys ===
 
 *address: Niobio Cash address
-*amount: Amount of base Niobio Cash units ([[#Transfer Amount|see below]])
+*amount: Amount of base Niobio Cash units ([[#Transfer Amount])
 *label: Label for that address (e.g. name of receiver)
 *payid: Payment ID in hexadecimal format
 *anon: Anonymity level
