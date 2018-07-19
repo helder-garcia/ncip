@@ -63,13 +63,14 @@ A padronização do esquema ("niobiocash:") não faz distinção entre maiúscul
 
 ====Valor da Transferência====
 
-If an amount is provided, it MUST be specified in integer NBR.
-All amounts MUST contain no commas or periods. Clients should consider the 8 decimal places.
-I.e. 100000000 is treated as 1 NBR, 10000000 is 0.1 NBR, and 1.00000000 is an invalid amount.
+Se um valor é fornecido, ele DEVE ser especificado em NBR 
+Todos os valores NÂO DEVEM conter vírgulas ou pontos. Os clientes devem considerar as oito casas decimais. 
+Ou seja, 100000000 é considerado como 1 NBR, 10000000 é 0.1 NBR e 1.00000000 é um valor inválido.
 
-Niobio Cash clients MAY display the amount in any format that is not intended to deceive the user.
+Clientes Niobio Cash PODEM exibir os valor em qualquer formato que não tenha como objetivo enganar o usuário.
 They SHOULD choose a format that is foremost least confusing, and only after that most reasonable given the amount requested.
-For example, so long as the majority of users work in NBR units, values should always be displayed in NBR by default, even if mNBR would otherwise be a more logical interpretation of the amount.
+Eles DEVEM escolher um formato que seja o menos confuso possível, e somente após isso o mais razoável, dado o valor solicidado
+Por exemplo, desde que a maioria dos usuários trabalhe com unidades de NBR, os valores sempre devem ser exibidos em NBR como padrão, mesmo que mNBR seja uma interpretação mais lógica do valor
 
 == Fundamentaçãpo ==
 
@@ -92,9 +93,8 @@ Variables which are prefixed with a req- are considered required.  If a client d
 == Apêndice ==
 
 ===Sintaxe Simples===
-
-This section is non-normative and does not cover all possible syntax.
-Please see the [[#gramática-abnf|ABNF Grammar ]] above for the normative syntax.
+Essa seção não é normativa e não cobre toda a sintaxe possível.
+Por favor veja [[#gramática-abnf|Gramática ABNF]] acima para a sintaxe normativa.
 
 [foo] means optional, &lt;bar&gt; are placeholders
 
