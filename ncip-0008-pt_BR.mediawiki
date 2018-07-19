@@ -30,7 +30,7 @@ Clientes gráficos Niobio cash DEVEM se registrar como "manipuladores" para "nio
 
 === Formato Geral ===
 
-URIs Niobio Cash seguem o formato geral para URIs, definidos em RFC 3986. O componente padrão consiste no endereço da carteira Niobio Cash, e o "componente query" fornece opções adicionais de pagamentos.
+URIs Niobio Cash seguem o formato geral para URIs, definidos em RFC 3986. O componente padrão consiste no endereço da carteira Niobio Cash, e o componente de consulta fornece opções adicionais de pagamentos.
 Elementos do componente "query" podem conter caracteres fora do intervalo válido. Estes, devem ser codificados de acordo com o UTF-8 e, em seguida, cada octeto da sequência UTF-8 correspondente deve ser percentualmente codificado, conforme descrito no RFC 3986.
 
 === Gramática ABNF ===
@@ -48,7 +48,7 @@ Elementos do componente "query" podem conter caracteres fora do intervalo válid
  descparam   = "message=" *qchar
  reqparam       = "req-" qchar *qchar [ "=" *qchar ]
 
-Aqui, "qchar" corresponde a caracteres válidos em RFC 3986 URI componente "query" , excluindo o "=" e "&" caracteres, que este NCIP toma como separadores
+Aqui, "qchar" corresponde a caracteres válidos em RFC 3986 URI componente de consulta, excluindo o "=" e "&" caracteres, que este NCIP toma como separadores
 
 A padronização do esquema ("niobiocash:") não faz distinção entre maiúsculas e minúsculas e as implementações devem aceitar qualquer combinação das mesmas. O restante da URI faz a distinção entre maiúsuclas e minúsculas, incluindo as chaves de consulta do parâmetro.
 
@@ -108,13 +108,13 @@ Apenas o endereço:
 Endereço e o nome:
  niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?label=Jayder-Franca
 
-Socilitar 10.5 NBR para "Jayder-Franca":
+Solicitar 10.5 NBR para "Jayder-Franca":
  niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?amount=1050000000&label=Jayder-Franca
 
 Solicitar 200 NBR com mensagem:
  niobiocash:N76KUSqbeYPajqYvbv2XeNGpxCtw2zvPjPfDh2aWa24yiCF5mQ68vfF5oCUdW1GiExNMJmGHtLf6qNGGjhPwDe2H5yShrVi?amount=20000000000&label=Jayder-Franca&desc=Donation%20for%20project%20xyz
 
-Characters must be URI encoded properly.
+Os caracteres devem ser codificados corretamente pela URI
 
 ==Copyright==
 
