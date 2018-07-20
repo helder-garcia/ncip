@@ -33,7 +33,7 @@ Clientes gráficos Niobio cash DEVEM se registrar como "manipuladores" para "nio
 URIs Niobio Cash seguem o formato geral para URIs, definidos em RFC 3986. O componente padrão consiste no endereço da carteira Niobio Cash, e o componente de consulta fornece opções adicionais de pagamentos.
 Elementos do componente consulta podem conter caracteres fora do intervalo válido. Estes devem ser codificados de acordo com o UTF-8 e, em seguida, cada octeto da sequência UTF-8 correspondente deve ser percentualmente codificado, conforme descrito no RFC 3986.
 
-===Gramática ABNF===
+=== Gramática ABNF ===
 
 (Veja também [[#Sintaxe_Simples|uma representação simples de sintaxe]])
 
@@ -87,7 +87,7 @@ Uma busca rápida deve então fazer o resto para ajudá-lo a encontrar os recurs
 
 ===Sintaxe Simples===
 Essa seção não é normativa e não cobre toda a sintaxe possível.
-Por favor veja [[#Gramatica_ABNF | Gramática ABNF ]] acima para a sintaxe normativa.
+Por favor veja [[#Gramática_ABNF | Gramática ABNF ]] acima para a sintaxe normativa.
 
 [foo] significa opcional, &lt;bar&gt; são valores de preenchimento.
 
