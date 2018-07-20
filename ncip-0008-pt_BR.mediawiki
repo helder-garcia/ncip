@@ -87,7 +87,7 @@ Uma busca rápida deve então fazer o resto para ajudá-lo a encontrar os recurs
 
 ===Sintaxe Simples===
 Essa seção não é normativa e não cobre toda a sintaxe possível.
-Por favor veja [[#Gramática_ABNF | Gramática ABNF ]] acima para a sintaxe normativa.
+Por favor veja [[#Gramatica_ABNF | Gramática ABNF ]] acima para a sintaxe normativa.
 
 [foo] significa opcional, &lt;bar&gt; são valores de preenchimento.
 
