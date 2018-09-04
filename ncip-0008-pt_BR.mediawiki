@@ -46,7 +46,6 @@ Elementos do componente consulta podem conter caracteres fora do intervalo váli
  labelparam     = "label=" *qchar
  anonparam    = "anon=" *digit
  descparam   = "message=" *qchar
- reqparam       = "req-" qchar *qchar [ "=" *qchar ]
 
 Aqui, "qchar" corresponde a caracteres válidos em RFC 3986 URI componente de consulta, excluindo o "=" e "&" caracteres, que este NCIP toma como separadores.
 
@@ -57,7 +56,7 @@ A padronização do esquema ("niobiocash:") não faz distinção entre maiúscul
 *address: Endereço da carteira Niobio Cash
 *amount: Quantidade de Niobio Cash
 *label: Identificador do endereço (por exemplo, o nome do destinatário)
-*payid: ID de pagamento no formato hexadecimal
+*payment_id: ID de pagamento no formato hexadecimal
 *anon: Nível de Anonimato
 *desc: Mensagem de descrição do pagamento ([[#Exemplos|veja os exemplos abaixo]])
 
@@ -91,7 +90,7 @@ Por favor veja [[#Gramática_ABNF | Gramática ABNF ]] acima para a sintaxe norm
 
 [foo] significa opcional, &lt;bar&gt; são valores de preenchimento.
 
- <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payid=<payid][&anon=<anon>][&desc=<description>]</nowiki>
+ <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payment_id=<payment id>][&anon=<anon>][&desc=<description>]</nowiki>
 
 ===Exemplos===
 

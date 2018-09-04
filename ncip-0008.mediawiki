@@ -46,7 +46,6 @@ Elements of the query component may contain characters outside the valid range. 
  labelparam     = "label=" *qchar
  anonparam    = "anon=" *digit
  descparam   = "message=" *qchar
- reqparam       = "req-" qchar *qchar [ "=" *qchar ]
 
 Here, "qchar" corresponds to valid characters of an RFC 3986 URI query component, excluding the "=" and "&" characters, which this NCIP takes as separators.
 
@@ -57,7 +56,7 @@ The scheme component ("niobiocash:") is case-insensitive, and implementations mu
 *address: Niobio Cash address
 *amount: Amount of base Niobio Cash units
 *label: Label for that address (e.g. name of receiver)
-*payid: Payment ID in hexadecimal format
+*payment_id: Payment ID in hexadecimal format
 *anon: Anonymity level
 *desc: Message that describes the transaction to the user ([[#Examples|see examples below]])
 
