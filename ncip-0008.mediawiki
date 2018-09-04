@@ -42,7 +42,7 @@ Elements of the query component may contain characters outside the valid range. 
  niobiocashparams  = niobiocashparam [ "&" niobiocashparams ]
  niobiocashparam   = [ amountparam / labelparam / descparam / reqparam ]
  amountparam    = "amount=" *digit
- payidparam     = "payid=" *qchar
+ paymentidparam     = "payment_id=" *qchar
  labelparam     = "label=" *qchar
  anonparam    = "anon=" *digit
  descparam   = "message=" *qchar
@@ -91,7 +91,7 @@ Please see the [[#ABNF_Grammar |ABNF Grammar ]] above for the normative syntax.
 
 [foo] means optional, &lt;bar&gt; are placeholders.
 
- <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payid=<payid][&anon=<anon>][&desc=<description>]</nowiki>
+ <nowiki>niobiocash:<address>[?amount=<amount>][&label=<label>][&payment_id=<payment id>][&anon=<anon>][&desc=<description>]</nowiki>
 
 ===Examples===
 

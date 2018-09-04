@@ -42,7 +42,7 @@ Elementos do componente consulta podem conter caracteres fora do intervalo váli
  niobiocashparams  = niobiocashparam [ "&" niobiocashparams ]
  niobiocashparam   = [ amountparam / labelparam / descparam / reqparam ]
  amountparam    = "amount=" *digit
- payidparam     = "payid=" *qchar
+ paymentidparam     = "payment_id=" *qchar
  labelparam     = "label=" *qchar
  anonparam    = "anon=" *digit
  descparam   = "message=" *qchar
