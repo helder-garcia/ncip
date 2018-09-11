@@ -81,7 +81,7 @@ Therefore, a URI scheme should not represent an exchange of personal information
 
 ===Completeness===
 
-The URI must provide as much data possible to make the payment straightforward and simple for the sender. If all parameters are fulfilled the sender's action will be simply to click a SEND button.
+The URI must provide as much data as possible to make the payment straightforward and simple for the sender. If all parameters are fulfilled the sender's action will be simply to click a SEND button.
 
 == Appendix ==
 
