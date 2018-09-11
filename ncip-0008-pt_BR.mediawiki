@@ -82,6 +82,7 @@ Portanto, a padronização URI não deve representar uma troca de informações 
 ===Completude===
 
 A URI deve prover o máximo possível de dados para tornar o pagamento simples e direto para o usuário. Se todos os parâmetros forem preenchidos o pagamento exigirá apenas o click de um botão ENVIAR.
+
 == Apêndice ==
 
 ===Sintaxe Simples===
